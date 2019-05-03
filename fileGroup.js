@@ -130,7 +130,7 @@ var config = {
                 roomToken: tr.querySelector('.join').id,
                 joinUser: tr.id,
                 //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-                userName: nameofUser
+                userName: nameofuser
             });
             hideUnnecessaryStuff();
         };
