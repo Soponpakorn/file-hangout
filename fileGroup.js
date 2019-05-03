@@ -358,7 +358,8 @@ function disable(_disable) {
 function hangout(config) {
     var self = {
         userToken: uniqueToken(),
-        userName: 'Anonymous'
+        //userName: 'Anonymous'
+        userName: nameofuser
     },
         channels = '--',
         isbroadcaster,
@@ -600,7 +601,8 @@ function hangout(config) {
     openDefaultSocket();
     return {
         createRoom: function(_config) {
-            self.roomName = _config.roomName || 'Anonymous';
+            //self.roomName = _config.roomName || 'Anonymous';
+            self.roomName = _config.roomName;
             self.roomToken = uniqueToken();
             if (_config.userName) self.userName = _config.userName;
 
