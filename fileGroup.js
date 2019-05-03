@@ -11,6 +11,18 @@
     }, 1000);
 })();
 
+//set cookie
+var frong = document.cookie
+for (var i = 0; i < frong.split(";").length; i++) {
+    if (frong.split(";")[i].indexOf("token=") != -1) {
+        var tmp = "" + frong.split(";")[i]
+        tmp.split(";")[0].split(":");
+        var pos = tmp.split(";")[0].split(":")[1]
+        tmp.split(";")[0].split(":")[0].split("=")
+        var nameofuser = tmp.split(";")[0].split(":")[0].split("=")[1]
+    }
+}
+
 function setUserInterface() {
     hangoutUI = hangout(config);
 
@@ -68,6 +80,7 @@ var config = {
     openSocket: function(config) {
         var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
         var SIGNALING_SERVER = 'http://localhost:8080/';
+        var SIGNALING_SERVER = 'https://bright.ikirize.net:6504/';
 
         config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
         var sender = Math.round(Math.random() * 999999999) + 999999999;
