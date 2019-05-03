@@ -36,8 +36,8 @@ function setUserInterface() {
             hangoutUI.createRoom({
                 //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
                 //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-                userName: nameofuser,
-                roomname: nameofuser
+                userName: myUsername || 'Anonymous1',
+                roomname: myUsername || 'Anonymous2'
             });
             hideUnnecessaryStuff();
         };
@@ -130,7 +130,7 @@ var config = {
                 roomToken: tr.querySelector('.join').id,
                 joinUser: tr.id,
                 //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-                userName: nameofuser
+                userName: myUsername || 'Anonymous3'
             });
             hideUnnecessaryStuff();
         };
@@ -358,8 +358,7 @@ function disable(_disable) {
 function hangout(config) {
     var self = {
         userToken: uniqueToken(),
-        //userName: 'Anonymous'
-        userName: nameofuser
+        userName: 'Anonymous'
     },
         channels = '--',
         isbroadcaster,
@@ -602,7 +601,7 @@ function hangout(config) {
     return {
         createRoom: function(_config) {
             //self.roomName = _config.roomName || 'Anonymous';
-            self.roomName = _config.roomName;
+            self.roomName = _config.roomName || 'Anonymous4';
             self.roomToken = uniqueToken();
             if (_config.userName) self.userName = _config.userName;
 
