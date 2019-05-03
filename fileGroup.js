@@ -30,8 +30,10 @@ function setUserInterface() {
     if (startConferencing)
         startConferencing.onclick = function() {
             hangoutUI.createRoom({
-                userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
-                roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
+                //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                userName: nameofuser,
+                roomname: nameofuser
             });
             hideUnnecessaryStuff();
         };
