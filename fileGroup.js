@@ -37,7 +37,7 @@ function setUserInterface() {
                 //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
                 //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
                 userName: myUsername || 'Anonymous1',
-                roomname: myUsername || 'Anonymous2'
+                roomName: myUsername || 'Anonymous2'
             });
             hideUnnecessaryStuff();
         };
