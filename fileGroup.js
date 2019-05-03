@@ -129,7 +129,8 @@ var config = {
             hangoutUI.joinRoom({
                 roomToken: tr.querySelector('.join').id,
                 joinUser: tr.id,
-                userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                userName: nameofUser
             });
             hideUnnecessaryStuff();
         };
