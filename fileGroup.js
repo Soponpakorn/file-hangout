@@ -11,6 +11,10 @@
     }, 1000);
 })();
 
+function setUsername() {
+    myUsername = nameofuser;
+}
+
 //set cookie
 var frong = document.cookie
 for (var i = 0; i < frong.split(";").length; i++) {
@@ -25,7 +29,7 @@ for (var i = 0; i < frong.split(";").length; i++) {
 
 function setUserInterface() {
     hangoutUI = hangout(config);
-
+    setUsername();
     startConferencing = document.getElementById('start-conferencing');
     if (startConferencing)
         startConferencing.onclick = function() {
