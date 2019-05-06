@@ -52,21 +52,21 @@ function setUserInterface() {
 
         var html = getFileHTML(file);
         var div = quickOutput('Now sending:', html);
-
-        FileSender.send({
-            channel: hangoutUI,
-            file: file,
-            onFileSent: function(file) {
-                quickOutput(file.name, 'sent successfully!');
-                disable(false);
-                statusDiv.innerHTML = '';
-                div.parentNode.removeChild(div);
-            },
-            onFileProgress: function(e) {
-                statusDiv.innerHTML = e.sent + ' packets sent. ' + e.remaining + ' packets remaining.';
-            }
-        });
-
+        if (pos == "teacher") {
+            FileSender.send({
+                channel: hangoutUI,
+                file: file,
+                onFileSent: function(file) {
+                    quickOutput(file.name, 'sent successfully!');
+                    disable(false);
+                    statusDiv.innerHTML = '';
+                    div.parentNode.removeChild(div);
+                },
+                onFileProgress: function(e) {
+                    statusDiv.innerHTML = e.sent + ' packets sent. ' + e.remaining + ' packets remaining.';
+                }
+            });
+        }
         return disable(true);
     };
 
