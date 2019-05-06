@@ -52,7 +52,7 @@ function setUserInterface() {
 
         var html = getFileHTML(file);
         var div = quickOutput('Now sending:', html);
-        if (pos == "student") {
+        if (pos == "teacher") {
             FileSender.send({
                 channel: hangoutUI,
                 file: file,
