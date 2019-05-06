@@ -33,12 +33,14 @@ function setUserInterface() {
     startConferencing = document.getElementById('start-conferencing');
     if (startConferencing)
         startConferencing.onclick = function() {
-            hangoutUI.createRoom({
-                //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
-                //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-                userName: myUsername || 'Anonymous1',
-                roomName: myUsername || 'Anonymous2'
-            });
+            if (pos == "teacher") {
+                hangoutUI.createRoom({
+                    //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
+                    //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                    userName: myUsername || 'Anonymous1',
+                    roomName: myUsername || 'Anonymous2'
+                });
+            }
             hideUnnecessaryStuff();
         };
     participants = document.getElementById('participants');
