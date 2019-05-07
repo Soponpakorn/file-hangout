@@ -3,6 +3,8 @@
 // Documentation   - github.com/muaz-khan/WebRTC-Experiment/tree/master/file-hangout
 // =============
 // file-hangout.js
+// Copyright       - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/file-hangout
+//                   Use this document to make a sharing file between peers
 
 (function selfInvoker() {
     setTimeout(function() {
