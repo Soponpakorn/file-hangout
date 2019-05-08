@@ -84,7 +84,8 @@ function setUserInterface() {
             //uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this Link!</a></h2>';
             uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><input type="text" value="' + location.href + '" id="myURL"><button onclick="copyClipboard()">Copy Link</button></h2>';
         else
-            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
+            //uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
+            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href;
 }
 
 function copyClipboard() {
@@ -369,7 +370,7 @@ function disable(_disable) {
 
 function hangout(config) {
     var self = {
-        userToken: uniqueToken(),
+        //userToken: uniqueToken(),
         userName: 'Anonymous'
     },
         channels = '--',
@@ -588,7 +589,8 @@ function hangout(config) {
         if (!channel || channels.indexOf(channel) != -1 || channel == self.userToken) return;
         channels += channel + '--';
 
-        var new_channel = uniqueToken();
+        //var new_channel = uniqueToken();
+        var new_channel = roomName;
         openSubSocket({
             channel: new_channel,
             closeSocket: true
@@ -614,7 +616,8 @@ function hangout(config) {
         createRoom: function(_config) {
             //self.roomName = _config.roomName || 'Anonymous';
             self.roomName = _config.roomName || 'Anonymous4';
-            self.roomToken = uniqueToken();
+            //self.roomToken = uniqueToken();
+            self.roomToken = _config.roomName;
             if (_config.userName) self.userName = _config.userName;
 
             isbroadcaster = true;
