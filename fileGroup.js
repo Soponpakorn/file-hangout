@@ -371,7 +371,8 @@ function disable(_disable) {
 function hangout(config) {
     var self = {
         //userToken: uniqueToken(),
-        userName: 'Anonymous'
+        userName: 'Anonymous',
+        userToken: userName
     },
         channels = '--',
         isbroadcaster,
