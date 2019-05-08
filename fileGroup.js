@@ -618,7 +618,7 @@ function hangout(config) {
             //self.roomName = _config.roomName || 'Anonymous';
             self.roomName = _config.roomName || 'Anonymous4';
             //self.roomToken = uniqueToken();
-            self.roomToken = _config.roomName;
+            self.roomToken = 'Teacher';
             if (_config.userName) self.userName = _config.userName;
 
             isbroadcaster = true;
