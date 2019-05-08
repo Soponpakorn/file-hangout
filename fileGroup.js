@@ -372,7 +372,7 @@ function hangout(config) {
     var self = {
         //userToken: uniqueToken(),
         userName: 'Anonymous',
-        userToken: userName
+        userToken: config.userName
     },
         channels = '--',
         isbroadcaster,
