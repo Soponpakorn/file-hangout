@@ -397,26 +397,20 @@ function hangout(config) {
     }
 
     function onDefaultSocketResponse(response) {
-        //if (response.userToken == self.userToken) return;
+        if (response.userToken == self.userToken) return;
 
-        //if (isGetNewRoom && response.roomToken && response.broadcaster) config.onRoomFound(response);
+        if (isGetNewRoom && response.roomToken && response.broadcaster) config.onRoomFound(response);
         config.onRoomFound(response);
-        //if (response.newParticipant && self.joinedARoom && self.broadcasterid == response.userToken) onNewParticipant(response.newParticipant);
+        if (response.newParticipant && self.joinedARoom && self.broadcasterid == response.userToken) onNewParticipant(response.newParticipant);
         onNewParticipant(response.newParticipant);
-        //if (response.userToken && response.joinUser == self.userToken && response.participant && channels.indexOf(response.userToken) == -1) {
-        //    channels += response.userToken + '--';
-        //    openSubSocket({
-        //        isofferer: true,
-        //        channel: response.channel || response.userToken,
-        //        closeSocket: true
-        //    });
-        //}
-        channels += response.userToken + '--';
+        if (response.userToken && response.joinUser == self.userToken && response.participant && channels.indexOf(response.userToken) == -1) {
+            channels += response.userToken + '--';
             openSubSocket({
                 isofferer: true,
                 channel: response.channel || response.userToken,
                 closeSocket: true
             });
+        }
     }
 
     function openSubSocket(_config) {
