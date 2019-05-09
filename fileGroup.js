@@ -8,7 +8,7 @@
 
 (function selfInvoker() {
     setTimeout(function() {
-        if (typeof window.RTCPeerConnection1 != 'undefined') setUserInterface();
+        if (typeof window.RTCPeerConnection != 'undefined') setUserInterface();
         else selfInvoker();
     }, 1000);
 })();
@@ -460,7 +460,7 @@ function hangout(config) {
                 peerConfig.onAnswerSDP = sendsdp;
             }
 
-            peer = RTCPeerConnection1(peerConfig);
+            peer = RTCPeerConnection(peerConfig);
         }
 
         function onChannelOpened(channel) {
