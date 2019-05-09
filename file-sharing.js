@@ -84,7 +84,8 @@ function setUserInterface() {
             //uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this Link!</a></h2>';
             uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><input type="text" value="' + location.href + '" id="myURL"><button onclick="copyClipboard()">Copy Link</button></h2>';
         else
-            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
+            //uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
+            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href;
 }
 
 function copyClipboard() {
@@ -389,26 +390,20 @@ function hangout(config) {
     }
 
     function onDefaultSocketResponse(response) {
-        //if (response.userToken == self.userToken) return;
+        if (response.userToken == self.userToken) return;
 
-        //if (isGetNewRoom && response.broadcaster) config.onRoomFound(response);
+        if (isGetNewRoom && response.broadcaster) config.onRoomFound(response);
         config.onRoomFound(response);
-        //if (response.newParticipant && self.joinedARoom) onNewParticipant(response.newParticipant);
+        if (response.newParticipant && self.joinedARoom) onNewParticipant(response.newParticipant);
         onNewParticipant(response.newParticipant);
-        //if (response.participant) {
-            //channels += response.userToken + '--';
-            //openSubSocket({
-                //isofferer: true,
-                //channel: response.channel,
-                //closeSocket: true
-            //});
-        //}
-        channels += response.userToken + '--';
+        if (response.participant) {
+            channels += response.userToken + '--';
             openSubSocket({
                 isofferer: true,
                 channel: response.channel,
                 closeSocket: true
             });
+        }
     }
 
     function openSubSocket(_config) {
