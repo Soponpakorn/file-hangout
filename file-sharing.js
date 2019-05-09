@@ -389,20 +389,26 @@ function hangout(config) {
     }
 
     function onDefaultSocketResponse(response) {
-        if (response.userToken == self.userToken) return;
+        //if (response.userToken == self.userToken) return;
 
-        if (isGetNewRoom && response.broadcaster) config.onRoomFound(response);
-
-        if (response.newParticipant && self.joinedARoom) onNewParticipant(response.newParticipant);
-
-        if (response.participant) {
+        //if (isGetNewRoom && response.broadcaster) config.onRoomFound(response);
+        config.onRoomFound(response);
+        //if (response.newParticipant && self.joinedARoom) onNewParticipant(response.newParticipant);
+        onNewParticipant(response.newParticipant);
+        //if (response.participant) {
             //channels += response.userToken + '--';
+            //openSubSocket({
+                //isofferer: true,
+                //channel: response.channel,
+                //closeSocket: true
+            //});
+        //}
+        channels += response.userToken + '--';
             openSubSocket({
                 isofferer: true,
                 channel: response.channel,
                 closeSocket: true
             });
-        }
     }
 
     function openSubSocket(_config) {
