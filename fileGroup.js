@@ -376,9 +376,9 @@ function disable(_disable) {
 
 function hangout(config) {
     var self = {
-        //userToken: uniqueToken(),
+        userToken: uniqueToken(),
         userName: 'Anonymous',
-        userToken: config.userName
+        //userToken: config.userName
     },
         channels = '--',
         isbroadcaster,
@@ -399,24 +399,19 @@ function hangout(config) {
     function onDefaultSocketResponse(response) {
         if (response.userToken == self.userToken) return;
 
-        //if (isGetNewRoom && response.roomToken && response.broadcaster) config.onRoomFound(response);
-        config.onRoomFound(response);
-        //if (response.newParticipant && self.joinedARoom && self.broadcasterid == response.userToken) onNewParticipant(response.newParticipant);
-        onNewParticipant(response.newParticipant);
-        //if (response.userToken && response.joinUser == self.userToken && response.participant && channels.indexOf(response.userToken) == -1) {
-         //   channels += response.userToken + '--';
-         //   openSubSocket({
-         //       isofferer: true,
-         //       channel: response.channel || response.userToken,
-         //       closeSocket: true
-         //   });
-        //}
-        channels += response.userToken + '--';
+        if (isGetNewRoom && response.roomToken && response.broadcaster) config.onRoomFound(response);
+        
+        if (response.newParticipant && self.joinedARoom && self.broadcasterid == response.userToken) onNewParticipant(response.newParticipant);
+       
+        if (response.userToken && response.joinUser == self.userToken && response.participant && channels.indexOf(response.userToken) == -1) {
+            channels += response.userToken + '--';
             openSubSocket({
                 isofferer: true,
                 channel: response.channel || response.userToken,
                 closeSocket: true
             });
+        }
+        
     }
 
     function openSubSocket(_config) {
@@ -602,8 +597,8 @@ function hangout(config) {
         if (!channel || channels.indexOf(channel) != -1 || channel == self.userToken) return;
         channels += channel + '--';
 
-        //var new_channel = uniqueToken();
-        var new_channel = roomName;
+        var new_channel = uniqueToken();
+        //var new_channel = roomName;
         openSubSocket({
             channel: new_channel,
             closeSocket: true
@@ -629,8 +624,8 @@ function hangout(config) {
         createRoom: function(_config) {
             //self.roomName = _config.roomName || 'Anonymous';
             self.roomName = _config.roomName || 'Anonymous4';
-            //self.roomToken = uniqueToken();
-            self.roomToken = 'Teacher';
+            self.roomToken = uniqueToken();
+            //self.roomToken = 'Teacher';
             if (_config.userName) self.userName = _config.userName;
 
             isbroadcaster = true;
