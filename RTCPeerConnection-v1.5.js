@@ -4,15 +4,15 @@
 // MIT License   - www.WebRTC-Experiment.com/licence
 // Documentation - github.com/muaz-khan/WebRTC-Experiment/tree/master/RTCPeerConnection
 
-if (typeof window.RTCPeerConnection1 !== 'undefined') {
-    window.RTCPeerConnection00 = window.RTCPeerConnection1;
+if (typeof window.RTCPeerConnection !== 'undefined') {
+    window.RTCPeerConnection00 = window.RTCPeerConnection;
 } else if (typeof mozRTCPeerConnection !== 'undefined') {
     window.RTCPeerConnection00 = mozRTCPeerConnection;
 } else if (typeof webkitRTCPeerConnection !== 'undefined') {
     window.RTCPeerConnection00 = webkitRTCPeerConnection;
 }
 
-var RTCPeerConnection1 = function (options) {
+var RTCPeerConnection = function (options) {
     var w = window;
 
     var RTCSessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription;
