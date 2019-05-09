@@ -78,13 +78,13 @@ function setUserInterface() {
     statusDiv = document.getElementById('status');
     unnecessaryStuffVisible = true;
 
-    //var uniqueToken = document.getElementById('unique-token');
-    //if (uniqueToken)
-    //    if (location.hash.length > 2)
-    //        //uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this Link!</a></h2>';
-    //        uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><input type="text" value="' + location.href + '" id="myURL"><button onclick="copyClipboard()">Copy Link</button></h2>';
-    //    else
-    //        uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
+    var uniqueToken = document.getElementById('unique-token');
+    if (uniqueToken)
+        if (location.hash.length > 2)
+            //uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this Link!</a></h2>';
+            uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><input type="text" value="' + location.href + '" id="myURL"><button onclick="copyClipboard()">Copy Link</button></h2>';
+        else
+            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
 }
 
 function copyClipboard() {
@@ -139,9 +139,9 @@ var config = {
         tr.onclick = function() {
             var tr = this;
             hangoutUI.joinRoom({
-                //roomToken: tr.querySelector('.join').id,
+                roomToken: tr.querySelector('.join').id,
                 joinUser: tr.id,
-                //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
                 userName: myUsername
             });
             hideUnnecessaryStuff();
@@ -282,7 +282,7 @@ function FileReceiver() {
             var virtualURL = (window.URL || window.webkitURL).createObjectURL(blob);
             
             // todo: should we use virtual-URL or data-URL?
-            // FileSaver.SaveToDisk(dataURL, data.name);
+            FileSaver.SaveToDisk(dataURL, data.name);
             blob.url = virtualURL;
             var html = getFileHTML(blob);
             quickOutput('Download:', html);
@@ -369,7 +369,7 @@ function disable(_disable) {
 
 function hangout(config) {
     var self = {
-        //userToken: uniqueToken(),
+        userToken: uniqueToken(),
         userName: 'Anonymous'
     },
         channels = '--',
@@ -389,7 +389,7 @@ function hangout(config) {
     }
 
     function onDefaultSocketResponse(response) {
-        //if (response.userToken == self.userToken) return;
+        if (response.userToken == self.userToken) return;
 
         if (isGetNewRoom && response.broadcaster) config.onRoomFound(response);
 
@@ -577,7 +577,7 @@ function hangout(config) {
 
     function startBroadcasting() {
         defaultSocket && defaultSocket.send({
-            //roomToken: self.roomToken,
+            roomToken: self.roomToken,
             roomName: self.roomName,
             broadcaster: self.userToken
         });
@@ -588,7 +588,7 @@ function hangout(config) {
         if (!channel || channels.indexOf(channel) != -1 || channel == self.userToken) return;
         channels += channel + '--';
 
-        //var new_channel = uniqueToken();
+        var new_channel = uniqueToken();
         openSubSocket({
             channel: new_channel,
             closeSocket: true
@@ -602,19 +602,19 @@ function hangout(config) {
         });
     }
 
-    //function uniqueToken() {
-    //    var s4 = function() {
-    //        return Math.floor(Math.random() * 0x10000).toString(16);
-    //    };
-    //    return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
-    //}
+    function uniqueToken() {
+        var s4 = function() {
+            return Math.floor(Math.random() * 0x10000).toString(16);
+        };
+        return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
+    }
 
     openDefaultSocket();
     return {
         createRoom: function(_config) {
             //self.roomName = _config.roomName || 'Anonymous';
             self.roomName = _config.roomName || 'Anonymous4';
-            //self.roomToken = uniqueToken();
+            self.roomToken = uniqueToken();
             if (_config.userName) self.userName = _config.userName;
 
             isbroadcaster = true;
@@ -622,7 +622,7 @@ function hangout(config) {
             startBroadcasting();
         },
         joinRoom: function(_config) {
-            //self.roomToken = _config.roomToken;
+            self.roomToken = _config.roomToken;
             if (_config.userName) self.userName = _config.userName;
             isGetNewRoom = false;
 
