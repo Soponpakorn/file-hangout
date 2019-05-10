@@ -35,20 +35,20 @@ function setUserInterface() {
     startConferencing = document.getElementById('start-conferencing');
     if (startConferencing)
         startConferencing.onclick = function() {
-            //if (pos == "teacher") {
-            //    hangoutUI.createRoom({
-            //        //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
-            //        //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-            //        userName: myUsername || 'Anonymous1',
-            //        roomName: myUsername || 'Anonymous2'
-            //    });
-            //}
-            hangoutUI.createRoom({
+            if (pos == "teacher") {
+                hangoutUI.createRoom({
+                    //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
+                    //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
+                    userName: myUsername,
+                    roomName: myUsername
+                });
+            }
+            /*hangoutUI.createRoom({
                     //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous',
                     //roomName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
                     userName: myUsername || 'Anonymous1',
                     roomName: myUsername || 'Anonymous2'
-                });
+                });*/
             hideUnnecessaryStuff();
         };
     participants = document.getElementById('participants');
@@ -150,7 +150,7 @@ var config = {
                 roomToken: tr.querySelector('.join').id,
                 joinUser: tr.id,
                 //userName: (document.getElementById('conference-name') || { }).value || 'Anonymous'
-                userName: myUsername || 'Anonymous3'
+                userName: myUsername
             });
             hideUnnecessaryStuff();
         };
@@ -624,7 +624,7 @@ function hangout(config) {
     return {
         createRoom: function(_config) {
             //self.roomName = _config.roomName || 'Anonymous';
-            self.roomName = _config.roomName || 'Anonymous4';
+            self.roomName = _config.roomName;
             self.roomToken = uniqueToken();
             //self.roomToken = 'Teacher';
             if (_config.userName) self.userName = _config.userName;
