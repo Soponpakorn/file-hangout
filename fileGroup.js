@@ -86,12 +86,13 @@ function setUserInterface() {
 
     var uniqueToken = document.getElementById('unique-token');
     if (uniqueToken)
-        if (location.hash.length > 2)
+        /*if (location.hash.length > 2)
             //uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this Link!</a></h2>';
             uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><input type="text" value="' + location.href + '" id="myURL"><button onclick="copyClipboard()">Copy Link</button></h2>';
         else
             //uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.round(Math.random() * 999999999) + 999999999);
-            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href;
+            uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href;*/
+        uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href;
 }
 
 function copyClipboard() {
